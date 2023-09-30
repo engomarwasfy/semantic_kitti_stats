@@ -13,7 +13,8 @@ from data import (
     get_names_learning,
     get_num_learning_labels,
 )
-
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 def draw_distance_and_label_matrix(matrix: np.array, save_dir: str = None):
     class_names, _, _ = get_names_learning()
@@ -32,7 +33,7 @@ def draw_distance_and_label_matrix(matrix: np.array, save_dir: str = None):
     ax.xaxis.tick_bottom()
 
     ax.set_ylabel("Class Label")
-    ax.set_yticks(np.arange(matrix.shape[0] + 1))
+    ax.set_yticks(np.arange(matrix.shape[0]))
     ax.set_yticklabels(class_names, va="bottom")
     ax.yaxis.set_label_position("left")
     ax.yaxis.tick_left()
@@ -70,7 +71,7 @@ def draw_azimuth_and_label_matrix(matrix: np.array, save_dir: str = None):
             l.set_visible(False)
 
     ax.set_ylabel("Class Label")
-    ax.set_yticks(np.arange(matrix.shape[0] + 1))
+    ax.set_yticks(np.arange(matrix.shape[0]))
     ax.set_yticklabels(class_names, va="bottom")
     ax.yaxis.set_label_position("left")
     ax.yaxis.tick_left()
@@ -106,7 +107,7 @@ def draw_elevation_and_label_matrix(matrix: np.array, save_dir: str = None):
             l.set_visible(False)
 
     ax.set_ylabel("Class Label")
-    ax.set_yticks(np.arange(matrix.shape[0] + 1))
+    ax.set_yticks(np.arange(matrix.shape[0]))
     ax.set_yticklabels(class_names, va="bottom")
     ax.yaxis.set_label_position("left")
     ax.yaxis.tick_left()
@@ -213,7 +214,7 @@ def draw_label_and_sequence_matrix(matrix: np.array, save_dir: str = None):
     ax.xaxis.tick_bottom()
 
     ax.set_ylabel("Class Label")
-    ax.set_yticks(np.arange(matrix.shape[1] + 1))
+    ax.set_yticks(np.arange(matrix.shape[1]))
     ax.set_yticklabels(class_names, va="bottom")
     ax.yaxis.set_label_position("left")
     ax.yaxis.tick_left()

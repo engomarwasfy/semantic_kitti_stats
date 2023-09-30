@@ -7,10 +7,12 @@ import numpy as np
 
 
 def load_data_points(path: str) -> (np.array, np.array):
+    """Returns sensor, intensity arrays"""
     cloud = np.fromfile(path, dtype=np.float32).reshape((-1, 4))
     return cloud[:, :-1], cloud[:, -1][:, np.newaxis]
 
 
 def load_data_labels(path: str) -> (np.array, np.array):
+    """Returns semantics, instance arrays"""
     labels = np.fromfile(path, dtype=np.uint32).reshape((-1, 1))
     return labels & 0xFFFF, labels >> 16
