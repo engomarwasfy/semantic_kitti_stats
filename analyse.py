@@ -91,8 +91,8 @@ def analyse(path, mode, save_dir):
                 label_filename = os.path.join(label_dir, label_file)
 
                 if (
-                    not os.path.splitext(point_file)[0]
-                    == os.path.splitext(label_file)[0]
+                    os.path.splitext(point_file)[0]
+                    != os.path.splitext(label_file)[0]
                 ):
                     raise ValueError(
                         "Point list file {pf} does not match label file {lf}".format(
@@ -192,18 +192,18 @@ def analyse(path, mode, save_dir):
             if save_dir is not None
             else None,
         )
-        # plots.draw_azimuth_and_label_matrix(
-        #     points_per_label_azimuth,
-        #     save_dir=os.path.join(save_dir, "{0:02d}_azimuth_label_matrix".format(s))
-        #     if save_dir is not None
-        #     else None,
-        # )
-        # plots.draw_elevation_and_label_matrix(
-        #     points_per_label_elevation,
-        #     save_dir=os.path.join(save_dir, "{0:02d}_elevation_label_matrix".format(s))
-        #     if save_dir is not None
-        #     else None,
-        # )
+            # plots.draw_azimuth_and_label_matrix(
+            #     points_per_label_azimuth,
+            #     save_dir=os.path.join(save_dir, "{0:02d}_azimuth_label_matrix".format(s))
+            #     if save_dir is not None
+            #     else None,
+            # )
+            # plots.draw_elevation_and_label_matrix(
+            #     points_per_label_elevation,
+            #     save_dir=os.path.join(save_dir, "{0:02d}_elevation_label_matrix".format(s))
+            #     if save_dir is not None
+            #     else None,
+            # )
 
     print("\n")
     print("Finished all sequences. Starting total analysis...")

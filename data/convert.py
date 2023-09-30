@@ -18,11 +18,9 @@ def convert(input_path, save_dir):
     name = ""
     with open(input_path, "rb") as f:
         name = os.path.basename(input_path).split(".")[0]
-        byte = f.read(size_float * 4)
-        while byte:
+        while byte := f.read(size_float * 4):
             x, y, z, intensity = struct.unpack("ffff", byte)
             list_pcd.append([x, y, z])
-            byte = f.read(size_float * 4)
     np_pcd = np.asarray(list_pcd)
     pcd = o3d.geometry.PointCloud()
     pcd.points = o3d.utility.Vector3dVector(np_pcd)
