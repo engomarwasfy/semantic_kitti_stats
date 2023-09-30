@@ -39,16 +39,18 @@ from utils import get_angle_label_stats, get_distance_label_stats, plots
     help="Path where to save the generated graphs. If not provided, show on display.",
 )
 def analyse(path, mode, save_dir):
+    num_seq = 71 # 71  # 11 for kitti
 
     sequence_folder = os.path.join(path, "dataset", "sequences")
 
     # placeholder for overall stats
     pplds = np.zeros(
-        [11, get_num_learning_labels(), len(distance_bins)], dtype=np.int64
+        [num_seq, get_num_learning_labels(), len(distance_bins)], dtype=np.int64
     )
 
     # iterate over all train/val sequences
-    for s in range(11):
+
+    for s in range(num_seq):
         if mode == "compute":
             print("\nSequence {seq}".format(seq=s))
 
@@ -172,36 +174,36 @@ def analyse(path, mode, save_dir):
         pplds[s] = points_per_label_distance
 
         # visualize the data
-        plots.draw_distance_and_label_matrix(
-            points_per_label_distance,
-            save_dir=os.path.join(save_dir, "{0:02d}_distance_label_matrix".format(s))
-            if save_dir is not None
-            else None,
-        )
-        plots.draw_points_per_distance(
-            points_per_distance,
-            save_dir=os.path.join(save_dir, "{0:02d}_points_per_distance.".format(s))
-            if save_dir is not None
-            else None,
-        )
+        # plots.draw_distance_and_label_matrix(
+        #     points_per_label_distance,
+        #     save_dir=os.path.join(save_dir, "{0:02d}_distance_label_matrix".format(s))
+        #     if save_dir is not None
+        #     else None,
+        # )
+        # plots.draw_points_per_distance(
+        #     points_per_distance,
+        #     save_dir=os.path.join(save_dir, "{0:02d}_points_per_distance.".format(s))
+        #     if save_dir is not None
+        #     else None,
+        # )
         plots.draw_points_per_label(
             points_per_label,
             save_dir=os.path.join(save_dir, "{0:02d}_points_per_label".format(s))
             if save_dir is not None
             else None,
         )
-        plots.draw_azimuth_and_label_matrix(
-            points_per_label_azimuth,
-            save_dir=os.path.join(save_dir, "{0:02d}_azimuth_label_matrix".format(s))
-            if save_dir is not None
-            else None,
-        )
-        plots.draw_elevation_and_label_matrix(
-            points_per_label_elevation,
-            save_dir=os.path.join(save_dir, "{0:02d}_elevation_label_matrix".format(s))
-            if save_dir is not None
-            else None,
-        )
+        # plots.draw_azimuth_and_label_matrix(
+        #     points_per_label_azimuth,
+        #     save_dir=os.path.join(save_dir, "{0:02d}_azimuth_label_matrix".format(s))
+        #     if save_dir is not None
+        #     else None,
+        # )
+        # plots.draw_elevation_and_label_matrix(
+        #     points_per_label_elevation,
+        #     save_dir=os.path.join(save_dir, "{0:02d}_elevation_label_matrix".format(s))
+        #     if save_dir is not None
+        #     else None,
+        # )
 
     print("\n")
     print("Finished all sequences. Starting total analysis...")
@@ -235,18 +237,18 @@ def analyse(path, mode, save_dir):
         )
 
     # visualize the data
-    plots.draw_distance_and_label_matrix(
-        ppld,
-        save_dir=os.path.join(save_dir, "total_distance_label_matrix")
-        if save_dir is not None
-        else None,
-    )
-    plots.draw_points_per_distance(
-        ppd,
-        save_dir=os.path.join(save_dir, "total_points_per_distance")
-        if save_dir is not None
-        else None,
-    )
+    # plots.draw_distance_and_label_matrix(
+    #     ppld,
+    #     save_dir=os.path.join(save_dir, "total_distance_label_matrix")
+    #     if save_dir is not None
+    #     else None,
+    # )
+    # plots.draw_points_per_distance(
+    #     ppd,
+    #     save_dir=os.path.join(save_dir, "total_points_per_distance")
+    #     if save_dir is not None
+    #     else None,
+    # )
     plots.draw_points_per_label(
         ppl,
         save_dir=os.path.join(save_dir, "total_points_per_label")
@@ -254,21 +256,21 @@ def analyse(path, mode, save_dir):
         else None,
     )
 
-    plots.draw_distance_and_sequence_matrix(
-        ppds,
-        save_dir=os.path.join(save_dir, "sequence_distance_matrix")
-        if save_dir is not None
-        else None,
-    )
-    plots.draw_label_and_sequence_matrix(
-        ppls,
-        save_dir=os.path.join(save_dir, "sequence_label_matrix")
-        if save_dir is not None
-        else None,
-    )
-    plots.draw_sequence_length(
-        save_dir=os.path.join(path, "sequence_length") if save_dir is not None else None
-    )
+    # plots.draw_distance_and_sequence_matrix(
+    #     ppds,
+    #     save_dir=os.path.join(save_dir, "sequence_distance_matrix")
+    #     if save_dir is not None
+    #     else None,
+    # )
+    # plots.draw_label_and_sequence_matrix(
+    #     ppls,
+    #     save_dir=os.path.join(save_dir, "sequence_label_matrix")
+    #     if save_dir is not None
+    #     else None,
+    # )
+    # plots.draw_sequence_length(
+    #     save_dir=os.path.join(path, "sequence_length") if save_dir is not None else None
+    # )
 
 
 if __name__ == "__main__":
