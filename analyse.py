@@ -89,8 +89,8 @@ def analyse(path, mode, save_dir):
                 label_filename = os.path.join(label_dir, label_file)
 
                 if (
-                    not os.path.splitext(point_file)[0]
-                    == os.path.splitext(label_file)[0]
+                    os.path.splitext(point_file)[0]
+                    != os.path.splitext(label_file)[0]
                 ):
                     raise ValueError(
                         "Point list file {pf} does not match label file {lf}".format(

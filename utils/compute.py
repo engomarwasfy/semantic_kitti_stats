@@ -15,9 +15,7 @@ def get_counts(
     lower: bool = False,
 ):
 
-    off = 0
-    if lower:
-        off = 1
+    off = 1 if lower else 0
     counter = np.zeros(
         [restriction_1, restriction_bins_2.shape[0] + off], dtype=np.int64
     )
